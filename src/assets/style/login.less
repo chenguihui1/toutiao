@@ -1,0 +1,73 @@
+.login{
+    .nav-left{
+        display: flex;
+    }
+    .logo{
+        width: 35px;
+        height: 35px;
+        background-color: black;
+        border-radius: 50%;
+        margin-top: 5px;
+    }
+    // 导航标题
+    .logo-text{
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 14px;
+        line-height: 46px;
+    }
+    /deep/ .van-nav-bar__text{
+        color: #0c34c9;
+        font-size: 15px;
+    }
+    .user-box{
+        margin-top: 100px;
+        padding: 0 15px;
+    }
+    // 标题样式
+    .welcome{
+        font-size: 28px;
+        font-weight: bold;
+    }
+    // 标题样式
+    .sub-title{
+        margin-top: 20px;
+        color: #83838B;
+        font-size: 16px;
+    }
+    // 表单样式
+    .user-title{
+        margin-bottom: 50px;
+    }
+    // 子表单元素
+    /deep/ .van-cell{
+        margin-bottom: 10px;
+    }
+    /deep/ .van-cell::after{
+        border-bottom: 1px none !important;
+        // margin-bottom: 10px;
+    }
+    /deep/ .van-button--default{
+        background-color: #ededed;
+        border: none !important;
+        // 字体颜色
+        .van-button__text{
+            color: #666666;
+        }
+    }
+    /deep/ .van-count-down{
+        width: 100px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        display: block;
+        border-radius: 100px;
+        background-color: #ededed;
+        color:#666666;
+        font-size: 12px;
+    }
+    .button-buttom{
+        margin-top: 40px;
+    }
+
+}
