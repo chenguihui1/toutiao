@@ -8,15 +8,15 @@ module.exports = {
   plugins: {
     // 自动添加浏览器厂商说明前缀
     // VueCLI 已经在内部默认配置了autoprefixer
-    autoprefixer: {
+    // autoprefixer: {
     //   // browsers 用来配置要兼容到系统（浏览器）环境
     //   // 这个配置没有问题，但是写到这里会有控制台编译警告
     //   /**
     //    * 为什么? 因为VueCLI 是通过项目中的
     //    * .browserlistrc 文件来配置要兼容的环境信息的
     //    */
-      browsers: ['Android >= 4.0', 'iOS >= 8']
-    },
+    //  browsers: ['Android >= 4.0', 'iOS >= 8']
+    // },
     // 把 px 转为 rem
     'postcss-pxtorem': {
     // 正常情况下安照你的设计稿来
