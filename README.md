@@ -1,24 +1,24 @@
 # toutiao-m
+# VueCLi 组件
+npm install --global @vue/cli
+# 安装 Vant
+npm i vant
 
-## Project setup
-```
-npm install
-```
+# 使用 lib-flexible 动态设置 REM 基准值（html 标签的字体大小）
+npm i amfe-flexible
+npm install postcss-pxtorem -D
+# 关于 PostCSS 配置文件
+module.exports = {
+  plugins: {
+    'autoprefixer': {
+      browsers: ['Android >= 4.0', 'iOS >= 8']
+    },
+    'postcss-pxtorem': {
+      rootValue: 37.5,
+      propList: ['*']
+    }
+  }
+}
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 登录注册
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
