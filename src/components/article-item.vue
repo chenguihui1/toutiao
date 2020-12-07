@@ -21,7 +21,7 @@
       <div class="label-wrap">
         <span>{{articles.aut_name}}</span>
         <span>{{articles.comm_count}}评论</span>
-        <span>{{articles.pubdate}}</span>
+        <span>{{articles.pubdate | relativeTime}}</span>
         <span>{{articles.collect_count}}</span>
       </div>
     </div>

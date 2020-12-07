@@ -22,3 +22,7 @@ module.exports = {
 
 # 登录注册
 
+# 时间处理库
+安装 npm install dayjs --save
+配置
+
