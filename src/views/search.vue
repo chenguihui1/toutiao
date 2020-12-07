@@ -9,18 +9,29 @@
         show-action
         @search="onSearch"
         @cancel="onCancel"
+        @focus="isResultShow = false"
       />
     </form>
     <!-- 搜索栏 -->
-    <!-- 联想建议 -->
-    <Suggestion />
-    <!-- 联想建议 -->
-    <!-- 搜索历史 -->
-    <history />
-    <!-- 搜索历史 -->
+
     <!-- 搜索结果 -->
-    <SearchResult />
+    <Search-Result
+      v-if="isResultShow"
+    />
     <!-- 搜索结果 -->
+
+    <!-- 联想建议 -->
+    <Suggestion
+      v-else-if="searchText"
+      :search-text="searchText"
+    />
+    <!-- 联想建议 -->
+
+    <!-- 搜索历史 -->
+    <history
+      v-else
+    />
+    <!-- 搜索历史 -->
   </div>
 </template>
 <script>
@@ -36,12 +47,14 @@ export default {
   },
   data () {
     return {
-      searchText: ''
+      searchText: '', // 搜索输入的内容
+      isResultShow: false // 控制搜索结果显示状态
     }
   },
   methods: {
     onSearch () {
-      console.log('onSearch')
+      // console.log('onSearch')
+      this.isResultShow = true
     },
     onCancel () {
       // console.log('onCancel')
@@ -52,4 +65,12 @@ export default {
 }
 </script>
 <style lang="less">
+  .search-result{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 54px;
+    bottom: 0;
+    overflow-y: auto;
+  }
 </style>
