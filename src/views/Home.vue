@@ -31,6 +31,7 @@
 <script>
 import { getUserChannels } from '@/assets/api/user'
 import ArtcleList from '@/components/artcle-list'
+// import '@/assets/JavaScript/'
 export default {
   name: 'home',
   components: {
