@@ -6,13 +6,14 @@
         v-if="articles.cover.type === 3"
         class="cover-wrap"
       >
-        <div class="cover-wrap-item">
+        <div
+          class="cover-wrap-item"
+          v-for="(img, index) in articles.cover.images"
+          :key="index"
+        >
           <van-image
-            width="116"
-            height="73"
+            class="cover-image"
             fit="cover"
-            v-for="(img, index) in articles.cover.images"
-            :key="index"
             :src="img"
           />
         </div>
@@ -26,8 +27,7 @@
     </div>
     <van-image
       v-if="articles.cover.type === 1"
-      width="100"
-      height="74"
+      class="right-cover"
       fit="cover"
       :src="articles.cover.images[0]"
     />
@@ -47,7 +47,6 @@ export default {
 <style lang="less">
   .article-item{
     .title{
-      // width: 100px;
       font-size: 17px;
       color: #3a3a3a;
     }
@@ -55,6 +54,33 @@ export default {
       flex: unset;
       width: 116px;
       height: 73px;
+      margin-left: 12px;
+    }
+    .right-cover{
+      width: 116px;
+      height: 73px;
+    }
+    .cover-wrap{
+      padding: 15px 0;
+      display: flex;
+      .cover-wrap-item{
+        flex: 1;
+        height: 73px;
+        &:not(:last-child){
+          padding-right: 4px;
+        }
+        .cover-image{
+          width: 100%;
+          height: 73px;
+        }
+      }
+    }
+    .label-wrap{
+      font-size: 11px;
+      color: #b4b4b4;
+    }
+    .label-wrap span{
+      margin-right: 12px;
     }
   }
 </style>
