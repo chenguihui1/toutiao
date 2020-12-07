@@ -15,14 +15,24 @@
     <!-- 联想建议 -->
     <Suggestion />
     <!-- 联想建议 -->
+    <!-- 搜索历史 -->
+    <history />
+    <!-- 搜索历史 -->
+    <!-- 搜索结果 -->
+    <SearchResult />
+    <!-- 搜索结果 -->
   </div>
 </template>
 <script>
 import Suggestion from '@/components/suggestion'
+import History from '@/components/history'
+import SearchResult from '@/components/search-result'
 export default {
   name: 'Search',
   components: {
-    Suggestion
+    Suggestion,
+    History,
+    SearchResult
   },
   data () {
     return {
