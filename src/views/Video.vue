@@ -1,6 +1,6 @@
 <template>
     <div>
-        视频页面
+        开发中
     </div>
 </template>
 <script>

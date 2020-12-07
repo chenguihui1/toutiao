@@ -9,6 +9,7 @@
           type="info"
           round
           size="small"
+          to="/search"
         >
           搜索
         </van-button>
@@ -59,7 +60,7 @@ export default {
 <style lang="less">
   .home-container{
     /deep/ .van-nav-bar__title{
-      max-width: unset;
+      max-width: none;
     }
     .search-btn{
       width: 277px;
@@ -75,14 +76,20 @@ export default {
     }
     /deep/.van-tabs__wrap--scrollable{
       .van-tab{
-        margin: 0 8px;
+        border-right: 1px solid #edeff3;
+        border-bottom: 1px solid #edeff3;
+        padding-left: 21px;
+        padding-right: 20px;
       }
-      .van-tab__text{
-        font-size: 15px;
+      .van-tabs__line{
+        bottom: 4px;
+        width: 25px !important;
+        height: 3px;
+        background: #3296fa;
       }
     }
     /deep/ .van-tabs__nav--complete{
-      padding-left: 6px;
+      padding: unset;
     }
   }
 </style>

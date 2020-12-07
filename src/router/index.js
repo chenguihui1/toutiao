@@ -9,6 +9,7 @@ const routes = [
     name: 'login',
     component: () => import('@/views/Login.vue')
   },
+  // 一级路由渲染到跟组件
   {
     path: '/',
     name: '',
@@ -35,6 +36,11 @@ const routes = [
         component: () => import('@/views/My.vue')
       }
     ]
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/components/search.vue')
   }
 ]
 
