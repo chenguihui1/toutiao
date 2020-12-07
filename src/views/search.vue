@@ -12,11 +12,18 @@
       />
     </form>
     <!-- 搜索栏 -->
+    <!-- 联想建议 -->
+    <Suggestion />
+    <!-- 联想建议 -->
   </div>
 </template>
 <script>
+import Suggestion from '@/components/suggestion'
 export default {
   name: 'Search',
+  components: {
+    Suggestion
+  },
   data () {
     return {
       searchText: ''
