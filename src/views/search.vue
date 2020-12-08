@@ -33,6 +33,7 @@
     <history
       v-else
       :search-histories="searchHistories"
+      @search="onSearch"
     />
     <!-- 搜索历史 -->
   </div>
@@ -41,6 +42,9 @@
 import Suggestion from '@/components/suggestion'
 import History from '@/components/history'
 import SearchResult from '@/components/search-result'
+import { setItem, getItem } from '@/assets/utils/storage'
+import { getSearchHistories } from '@/assets/api/search'
+import { mapState } from 'vuex'
 export default {
   name: 'Search',
   components: {
@@ -55,9 +59,14 @@ export default {
       searchHistories: [] // 搜索历史数据
     }
   },
+  computed: {
+    ...mapState(['user'])
+  },
+  async created () {
+    this.loadSearchHistories()
+  },
   methods: {
     onSearch (searchText) {
-      // console.log('onSearch')
       // 把输入框设置为要搜索的文本
       this.searchText = searchText
 
@@ -68,11 +77,25 @@ export default {
       }
       // 最新的搜索历史记录放到顶部
       this.searchHistories.unshift(searchText)
+
+      // 如果没有登录储存到本地
+      setItem('search-histories', this.searchHistories)
       // 显示搜索结果
       this.isResultShow = true
     },
+    async loadSearchHistories () {
+      let searchHistories = getItem('search-histories') || []
+      if (this.user) {
+        const { data } = await getSearchHistories()
+        // console.log(data)
+        searchHistories = [...new Set([
+          ...searchHistories,
+          ...data.data.keywords
+        ])]
+      }
+      this.searchHistories = searchHistories
+    },
     onCancel () {
-      // console.log('onCancel')
       // 返回上一级目录
       this.$router.back()
     }
