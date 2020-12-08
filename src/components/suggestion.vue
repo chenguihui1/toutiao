@@ -5,7 +5,9 @@
       v-for="(str, index) in suggestions"
       :key="index"
       :title="str"
+      @click="$emit('search', str)"
     >
+      <div slot="title" v-html="highlight(str)"></div>
     </van-cell>
   </div>
 </template>
@@ -22,7 +24,8 @@ export default {
   },
   data () {
     return {
-      suggestions: [] // 联想建议数据
+      suggestions: [], // 联想建议数据
+      htmlStr: 'Hello <span style="color:red">world</span>'
     }
   },
   watch: {
@@ -35,6 +38,13 @@ export default {
     }
   },
   methods: {
+    highlight (str) {
+      const hien = `<span style="color: red">${this.searchText}</span>`
+      return str.replace(
+        new RegExp(this.searchText, 'gi'),
+        hien
+      )
+    }
   }
 }
 </script>

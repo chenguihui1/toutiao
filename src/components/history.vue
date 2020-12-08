@@ -11,12 +11,9 @@
       <!-- <van-icon name="delete" /> -->
     </van-cell>
     <van-cell
-      title="hello"
-    >
-      <van-icon name="close" />
-    </van-cell>
-    <van-cell
-      title="world"
+      :title="history"
+      v-for="(history, index) in searchHistories"
+      :key="index"
     >
       <van-icon name="close" />
     </van-cell>
@@ -25,6 +22,12 @@
 <script>
 export default {
   name: 'History',
+  props: {
+    searchHistories: {
+      type: Array,
+      required: true
+    }
+  },
   data () {
     return {}
   }

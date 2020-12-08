@@ -7,7 +7,7 @@
         v-model="searchText"
         placeholder="请输入搜索关键字"
         show-action
-        @search="onSearch"
+        @search="onSearch(searchText)"
         @cancel="onCancel"
         @focus="isResultShow = false"
       />
@@ -17,6 +17,7 @@
     <!-- 搜索结果 -->
     <Search-Result
       v-if="isResultShow"
+      :search-text="searchText"
     />
     <!-- 搜索结果 -->
 
@@ -24,12 +25,14 @@
     <Suggestion
       v-else-if="searchText"
       :search-text="searchText"
+      @search="onSearch"
     />
     <!-- 联想建议 -->
 
     <!-- 搜索历史 -->
     <history
       v-else
+      :search-histories="searchHistories"
     />
     <!-- 搜索历史 -->
   </div>
@@ -48,12 +51,24 @@ export default {
   data () {
     return {
       searchText: '', // 搜索输入的内容
-      isResultShow: false // 控制搜索结果显示状态
+      isResultShow: false, // 控制搜索结果显示状态
+      searchHistories: [] // 搜索历史数据
     }
   },
   methods: {
-    onSearch () {
+    onSearch (searchText) {
       // console.log('onSearch')
+      // 把输入框设置为要搜索的文本
+      this.searchText = searchText
+
+      const index = this.searchHistories.indexOf(searchText)
+      if (index !== -1) {
+        // 把重复项删除
+        this.searchHistories.splice(index, 1)
+      }
+      // 最新的搜索历史记录放到顶部
+      this.searchHistories.unshift(searchText)
+      // 显示搜索结果
       this.isResultShow = true
     },
     onCancel () {
