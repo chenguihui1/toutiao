@@ -4,7 +4,11 @@
       title="搜索历史"
     >
       <div v-if="isDeleteShow">
-        <span>全部删除</span>
+        <span
+         @click="$emit('update-histories', [])"
+        >
+          全部删除
+        </span>
         &nbsp;
         <span
           @click="isDeleteShow = false"
@@ -32,7 +36,6 @@
   </div>
 </template>
 <script>
-import { setItem } from '@/assets/utils/storage'
 export default {
   name: 'History',
   props: {
@@ -51,7 +54,7 @@ export default {
       // 如果是删除状态，执行删除
       if (this.isDeleteShow) {
         this.searchHistories.splice(index, 1)
-        setItem('search-histories', this.searchHistories)
+        // setItem('search-histories', this.searchHistories)
         return
       }
       this.$emit('search', history)

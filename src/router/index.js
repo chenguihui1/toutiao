@@ -38,9 +38,14 @@ const routes = [
     ]
   },
   {
-    path: '/search',
+    path: '/Search',
     name: 'search',
-    component: () => import('@/views/search.vue')
+    component: () => import('@/views/Search.vue')
+  },
+  {
+    path: '/Profile',
+    name: 'UserProfile',
+    component: () => import('@/views/Profile.vue')
   }
 ]
 

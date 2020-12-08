@@ -34,6 +34,7 @@
       v-else
       :search-histories="searchHistories"
       @search="onSearch"
+      @update-histories="searchHistories=$event"
     />
     <!-- 搜索历史 -->
   </div>
@@ -62,7 +63,13 @@ export default {
   computed: {
     ...mapState(['user'])
   },
-  async created () {
+  watch: {
+    // 监视搜索历史记录变化
+    searchHistories () {
+      setItem('search-histories', this.searchHistories)
+    }
+  },
+  created () {
     this.loadSearchHistories()
   },
   methods: {
@@ -79,7 +86,7 @@ export default {
       this.searchHistories.unshift(searchText)
 
       // 如果没有登录储存到本地
-      setItem('search-histories', this.searchHistories)
+      // setItem('search-histories', this.searchHistories)
       // 显示搜索结果
       this.isResultShow = true
     },
