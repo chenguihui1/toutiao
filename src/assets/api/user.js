@@ -30,9 +30,6 @@ export const getCurrentUser = () => {
   return request({
     method: 'get',
     url: '/app/v1_0/user'
-    // headers: {
-    //   Authorization: `Bearer ${store.state.user.token}`
-    // }
   })
 }
 /**
@@ -42,5 +39,14 @@ export const getUserChannels = () => {
   return request({
     method: 'get',
     url: '/app/v1_0/user/channels'
+  })
+}
+/**
+ * 获取用用户个人资料
+ */
+export const getUserProfile = () => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/user/profile'
   })
 }
