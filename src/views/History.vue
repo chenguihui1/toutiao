@@ -1,7 +1,7 @@
 <template>
-  <div class="user-notice">
+  <div class="user-history">
     <van-nav-bar
-      title="消息通知"
+      title="历史"
       left-arrow
       @click-left="$router.back()"
     />
@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: 'UserNotice'
+  name: 'UserHistory'
 }
 </script>
 <style lang="less">

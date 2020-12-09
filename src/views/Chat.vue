@@ -8,7 +8,10 @@
     />
     <!-- 导航栏 -->
     <!-- 消息通知 -->
-    <van-cell-group class="message-list">
+    <van-cell-group
+      class="message-list"
+      ref="message-list"
+    >
       <van-cell
         :title="item.msg"
         v-for="(item, index) in messages"
@@ -35,25 +38,56 @@
   </div>
 </template>
 <script>
+import { getItem, setItem } from '@/assets/utils/session'
+import { Dialog } from 'vant'
 export default {
   name: 'UserChat',
   data () {
     return {
       message: '',
-      messages: [] // 消息列表
+      messages: getItem('messages') || [] // 消息列表
     }
+  },
+  watch: {
+    messages () {
+      setItem('messages', this.messages)
+      // 数据关闭影响试图更新不是立即的
+      this.$nextTick(() => {
+        this.scrollToBottom()
+      })
+    }
+  },
+  mounted () {
+    this.scrollToBottom()
   },
   methods: {
     onSend () {
       // 发送消息
-      // console.log(this.message)
-      const data = {
-        msg: this.message,
-        timestamp: Date.now()
+      // 频道输入框是否为空
+      if (this.message === '' || this.message === 0) {
+        Dialog.confirm({
+          title: '错误提醒',
+          message: '发送失败，请输入内容'
+        })
+          .then(() => {
+            // 确认执行
+          })
+          .catch(() => {
+            // 取消执行
+          })
+      } else {
+        const data = {
+          msg: this.message,
+          timestamp: Date.now()
+        }
+        this.messages.push(data)
+        // 清除输入框内容
+        this.message = ''
       }
-      this.messages.push(data)
-      // 清除输入框内容
-      this.message = ''
+    },
+    scrollToBottom () {
+      const list = this.$refs['message-list']
+      list.scrollTop = list.scrollHeight
     }
   }
 }

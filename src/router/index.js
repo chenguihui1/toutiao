@@ -59,13 +59,25 @@ const routes = [
     path: '/Notice',
     name: 'UserNotice',
     component: () => import('@/views/Notice.vue'),
-    meta: { requiresAuth: false }
+    meta: { requiresAuth: true }
   },
   {
     path: '/Chat',
     name: 'UserChat',
     component: () => import('@/views/Chat.vue'),
-    meta: { requiresAuth: false }
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/History',
+    name: 'UserHistory',
+    component: () => import('@/views/History.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/Collection',
+    name: 'UserCollection',
+    component: () => import('@/views/Collection.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -97,7 +109,7 @@ router.beforeEach((to, from, next) => {
       })
       .catch(() => {
         // 取消执行
-        next(false)
+        // next(false)
       })
   } else {
     // 不需要登录

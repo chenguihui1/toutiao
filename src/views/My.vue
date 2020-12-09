@@ -67,12 +67,14 @@
           icon-prefix="iconfont"
           icon="iconfont icon-shoucang"
           text="收藏"
+          to="/Collection"
         />
         <van-grid-item
           class="nav-grid-item"
           icon-prefix="iconfont"
           icon="iconfont icon-lishi"
           text="历史"
+          to="/History"
         />
       </van-grid>
       <van-cell
