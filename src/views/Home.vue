@@ -32,6 +32,7 @@
 <script>
 import { getUserChannels } from '@/assets/api/user'
 import ArtcleList from '@/components/artcle-list'
+import '@/assets/style/home.less'
 // import '@/assets/JavaScript/'
 export default {
   name: 'home',
@@ -58,38 +59,4 @@ export default {
 }
 </script>
 <style lang="less">
-  .home-container{
-    /deep/ .van-nav-bar__title{
-      max-width: none;
-    }
-    .search-btn{
-      width: 277px;
-      height: 32px;
-      background: #5babfb;
-      border: none;
-      .van-icon{
-        font-size: 16px;
-      }
-      .van-button__text{
-        font-size: 14px;
-      }
-    }
-    /deep/.van-tabs__wrap--scrollable{
-      .van-tab{
-        border-right: 1px solid #edeff3;
-        border-bottom: 1px solid #edeff3;
-        padding-left: 21px;
-        padding-right: 20px;
-      }
-      .van-tabs__line{
-        bottom: 4px;
-        width: 25px !important;
-        height: 3px;
-        background: #3296fa;
-      }
-    }
-    /deep/ .van-tabs__nav--complete{
-      padding: unset;
-    }
-  }
 </style>

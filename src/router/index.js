@@ -54,6 +54,18 @@ const routes = [
     name: 'UserProfile',
     component: () => import('@/views/Profile.vue'),
     meta: { requiresAuth: false }
+  },
+  {
+    path: '/Notice',
+    name: 'UserNotice',
+    component: () => import('@/views/Notice.vue'),
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/Chat',
+    name: 'UserChat',
+    component: () => import('@/views/Chat.vue'),
+    meta: { requiresAuth: false }
   }
 ]
 
