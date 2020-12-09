@@ -15,30 +15,49 @@
         rows="2"
         autosize
         type="textarea"
-        maxlength="50"
-        placeholder="请输入您的内容"
+        maxlength="7"
+        placeholder="请输入昵称"
         show-word-limit
       />
     </div>
   </div>
 </template>
 <script>
+import { updateUserProfile } from '@/assets/api/user'
 export default {
   name: 'UpdateName',
   props: {
-    name: {
+    value: {
       type: String,
       required: true
     }
   },
   data () {
     return {
-      localName: this.name
+      localName: this.value
     }
   },
   methods: {
-    onConfirm () {
-      console.log('hello')
+    async onConfirm () {
+      // console.log('hello')
+      this.$toast.loading({
+        message: '保存中',
+        forbidclick: true // 禁止背景点击
+      })
+      try {
+        // 请求修改名称
+        await updateUserProfile({
+          name: this.localName
+        })
+        // 更新成功
+        this.$emit('input', this.localName)
+        this.$emit('close')
+        this.$toast.success('保存成功')
+      } catch (err) {
+        if (err && err.response && err.response.status === 409) {
+          this.$toast.fail('昵称已存在')
+        }
+      }
     }
   }
 }

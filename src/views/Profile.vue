@@ -7,7 +7,6 @@
       left-arrow
       @click-left="$router.back()"
     >
-
     </van-nav-bar>
     <!-- 导航栏 -->
     <van-cell
@@ -33,20 +32,46 @@
       title="性别"
       is-link
       :value="user.gender === 0 ? '男' : '女'"
+      @click="isEditGenderShow = true"
     />
     <van-cell
       title="生日"
       is-link
       :value="user.birthday"
+      @click="isEditBirthdayShow = true"
     />
+    <!-- 修改昵称 -->
     <van-popup
       v-model="isEditNameShow"
       position="bottom"
       :style="{ height: '100%'}"
     >
+    <!-- @update-name="user.name=$event" -->
       <update-name
-        :name="user.name"
+        v-if="isEditNameShow"
+        v-model="user.name"
         @close="isEditNameShow = false"
+      />
+    </van-popup>
+    <!-- 修改性别 -->
+    <van-popup
+      v-model="isEditGenderShow"
+      position="bottom"
+    >
+      <update-gender
+        v-model="user.gender"
+        @close="isEditGenderShow=false"
+      />
+    </van-popup>
+    <!-- 修改生日 -->
+    <van-popup
+      v-model="isEditBirthdayShow"
+      position="bottom"
+    >
+      <update-birthdat
+        v-if="isEditBirthdayShow"
+        v-model="user.birthday"
+        @close="isEditBirthdayShow=false"
       />
     </van-popup>
   </div>
@@ -54,15 +79,22 @@
 <script>
 import { getUserProfile } from '@/assets/api/user'
 import UpdateName from '@/components/update-name'
+import UpdateGender from '@/components/update-gender'
+import UpdateBirthdat from '@/components/update-birthdat'
+
 export default {
   name: 'UserProfile',
   components: {
-    UpdateName
+    UpdateName,
+    UpdateGender,
+    UpdateBirthdat
   },
   data () {
     return {
       user: {}, // 用户数据
-      isEditNameShow: false // 编辑显示状态
+      isEditNameShow: false, // 编辑昵称显示状态
+      isEditGenderShow: false, // 编辑性别显示状态
+      isEditBirthdayShow: false // 编辑生日显示状态
     }
   },
   created () {
@@ -71,7 +103,7 @@ export default {
   methods: {
     async loadUserProfile () {
       const { data } = await getUserProfile()
-      console.log(data)
+      // console.log(data)
       this.user = data.data
     }
   }
