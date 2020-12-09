@@ -89,6 +89,7 @@
 import '@/assets/style/my.less'
 import { mapState } from 'vuex'
 import { getCurrentUser } from '@/assets/api/user'
+import store from '@/store/'
 export default {
   name: 'home',
   data () {
@@ -104,12 +105,13 @@ export default {
   },
   methods: {
     async loadCurrentUser () {
-      const { data } = await getCurrentUser()
-      // console.log(data)
-      this.currentUser = data.data
+      // 发送请求数据
+      if (store.state.user) {
+        const { data } = await getCurrentUser()
+        this.currentUser = data.data
+      }
     },
     onLogout () {
-      // console.log(111)
       // 提示用户是否确认退出
       this.$dialog.confirm({
         title: '退出提醒',
@@ -119,11 +121,8 @@ export default {
           // 确认执行
           // 清除用户登录状态
           this.$store.commit('setUser', null)
-          // confrm
         })
         .catch(() => {
-          // 取消执行
-          // on cancel
         })
     }
   }

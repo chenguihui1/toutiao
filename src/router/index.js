@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { Dialog } from 'vant'
+import store from '@/store/'
 
 Vue.use(VueRouter)
 // 路由表
@@ -61,15 +62,26 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // 频道页面是否需要登录才能访问
   if (to.meta.requiresAuth) {
     // 检测登录状态
+    // 如果以登录，直接通过
+    if (store.state.user) {
+      return next()
+    }
+    // 没有登录提示，是否登录
     Dialog.confirm({
       title: '登录提示',
       message: '该功能需要登录，是否登录'
     })
       .then(() => {
         // 确认执行
-        next()
+        router.replace({
+          name: 'login',
+          query: {
+            redirect: router.currentRoute.fullPath
+          }
+        })
       })
       .catch(() => {
         // 取消执行

@@ -118,10 +118,8 @@ export default {
     }
   },
   methods: {
-    onClickLeft () {
-    },
     onClickRight () {
-      this.$router.back()
+      this.$router.push(this.$route.query.redirect || '/')
     },
     // 提交请求
     async onClickic () {
