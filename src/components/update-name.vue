@@ -4,7 +4,7 @@
     <van-nav-bar
       title="修改昵称"
       left-text="取消"
-      right-text="完成"
+      right-text="确认"
       @click-left="$emit('close')"
       @click-right="onConfirm"
     />
@@ -15,7 +15,7 @@
         rows="2"
         autosize
         type="textarea"
-        maxlength="7"
+        maxlength="200"
         placeholder="请输入昵称"
         show-word-limit
       />
@@ -64,6 +64,24 @@ export default {
 </script>
 <style lang="less">
 .name-field-wrap{
-  padding: 10px;
+  padding: 15px 10px 10px 10px;
+  /deep/ .van-field{
+    height: 120px;
+  }
+  .van-field__body{
+    margin-top: 10px;
+  }
+}
+.van-nav-bar{
+  /deep/ .van-nav-bar__left{
+    .van-nav-bar__text{
+      color: #969799;
+    }
+  }
+  /deep/ .van-nav-bar__right{
+    .van-nav-bar__text{
+      color: #576b95;
+    }
+  }
 }
 </style>

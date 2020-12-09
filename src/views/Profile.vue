@@ -9,10 +9,18 @@
     >
     </van-nav-bar>
     <!-- 导航栏 -->
+    <input
+      type="file"
+      hidden
+      ref="file"
+      accept="image/*"
+      @change="onFileChange"
+    >
     <van-cell
       title="头像"
       is-link
       center
+      @click="$refs.file.click()"
     >
       <van-image
         width="35"
@@ -40,11 +48,11 @@
       :value="user.birthday"
       @click="isEditBirthdayShow = true"
     />
-    <!-- 修改昵称 -->
+    <!-- 修改昵称 :style="{ height: '100%'}" -->
     <van-popup
       v-model="isEditNameShow"
       position="bottom"
-      :style="{ height: '100%'}"
+      :style="{ height: '30%'}"
     >
     <!-- @update-name="user.name=$event" -->
       <update-name
@@ -74,6 +82,13 @@
         @close="isEditBirthdayShow=false"
       />
     </van-popup>
+    <!-- 修改头像-->
+    <van-popup
+      v-model="isEditPhotoShow"
+      position="bottom"
+    >
+      修改用户头像
+    </van-popup>
   </div>
 </template>
 <script>
@@ -94,7 +109,8 @@ export default {
       user: {}, // 用户数据
       isEditNameShow: false, // 编辑昵称显示状态
       isEditGenderShow: false, // 编辑性别显示状态
-      isEditBirthdayShow: false // 编辑生日显示状态
+      isEditBirthdayShow: false, // 编辑生日显示状态
+      isEditPhotoShow: false // 编辑头像显示状态
     }
   },
   created () {
@@ -105,6 +121,11 @@ export default {
       const { data } = await getUserProfile()
       // console.log(data)
       this.user = data.data
+    },
+    onFileChange () {
+      this.isEditPhotoShow = true
+      // 情况file的value
+      this.$refs.file.value = ''
     }
   }
 }
