@@ -15,7 +15,7 @@
         rows="2"
         autosize
         type="textarea"
-        maxlength="200"
+        maxlength="7"
         placeholder="请输入昵称"
         show-word-limit
       />

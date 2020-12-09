@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { Dialog } from 'vant'
 
 Vue.use(VueRouter)
 // 路由表
@@ -7,50 +8,77 @@ const routes = [
   {
     path: '/Login',
     name: 'login',
-    component: () => import('@/views/Login.vue')
+    component: () => import('@/views/Login.vue'),
+    meta: { requiresAuth: false }
   },
   // 一级路由渲染到跟组件
   {
     path: '/',
-    name: '',
     component: () => import('@/views/Layout.vue'),
     children: [
       {
         path: '', // 默认子路由
         name: 'home',
-        component: () => import('@/views/Home.vue')
+        component: () => import('@/views/Home.vue'),
+        meta: { requiresAuth: false }
       },
       {
         path: '/Qa', // 默认子路由
         name: 'qa',
-        component: () => import('@/views/Qa.vue')
+        component: () => import('@/views/Qa.vue'),
+        meta: { requiresAuth: false }
       },
       {
         path: '/Video', // 默认子路由
         name: 'video',
-        component: () => import('@/views/Video.vue')
+        component: () => import('@/views/Video.vue'),
+        meta: { requiresAuth: false }
       },
       {
         path: '/My', // 默认子路由
         name: 'my',
-        component: () => import('@/views/My.vue')
+        component: () => import('@/views/My.vue'),
+        meta: { requiresAuth: false }
       }
     ]
   },
   {
     path: '/Search',
     name: 'search',
-    component: () => import('@/views/Search.vue')
+    component: () => import('@/views/Search.vue'),
+    meta: { requiresAuth: false }
   },
   {
     path: '/Profile',
     name: 'UserProfile',
-    component: () => import('@/views/Profile.vue')
+    component: () => import('@/views/Profile.vue'),
+    meta: { requiresAuth: false }
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    // 检测登录状态
+    Dialog.confirm({
+      title: '登录提示',
+      message: '该功能需要登录，是否登录'
+    })
+      .then(() => {
+        // 确认执行
+        next()
+      })
+      .catch(() => {
+        // 取消执行
+        next(false)
+      })
+  } else {
+    // 不需要登录
+    next()
+  }
 })
 
 export default router

@@ -1,7 +1,9 @@
 <template>
   <div id="Layout">
     <!-- 子路由出口 -->
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <!-- <van-button icon-prefix=""></van-button> -->
       <van-tabbar v-model="active" route>
         <van-tabbar-item icon-prefix="iconfont" icon="iconfont iconfont icon-shouye" to='/'>首页</van-tabbar-item>
