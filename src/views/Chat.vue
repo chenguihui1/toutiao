@@ -40,6 +40,7 @@
 <script>
 import { getItem, setItem } from '@/assets/utils/session'
 import { Dialog } from 'vant'
+import '@/assets/JavaScript/robot-data'
 export default {
   name: 'UserChat',
   data () {
