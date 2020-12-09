@@ -84,10 +84,17 @@
     </van-popup>
     <!-- 修改头像-->
     <van-popup
+      class="update-photo-poup"
       v-model="isEditPhotoShow"
       position="bottom"
+      style="height:100%"
     >
-      修改用户头像
+      <update-photo
+        v-if="isEditPhotoShow"
+        :file="previewImage"
+        @close="isEditPhotoShow=false"
+        @update-photo="user.photo=$event"
+      />
     </van-popup>
   </div>
 </template>
@@ -96,13 +103,15 @@ import { getUserProfile } from '@/assets/api/user'
 import UpdateName from '@/components/update-name'
 import UpdateGender from '@/components/update-gender'
 import UpdateBirthdat from '@/components/update-birthdat'
+import UpdatePhoto from '@/components/update-photo'
 
 export default {
   name: 'UserProfile',
   components: {
     UpdateName,
     UpdateGender,
-    UpdateBirthdat
+    UpdateBirthdat,
+    UpdatePhoto
   },
   data () {
     return {
@@ -110,7 +119,8 @@ export default {
       isEditNameShow: false, // 编辑昵称显示状态
       isEditGenderShow: false, // 编辑性别显示状态
       isEditBirthdayShow: false, // 编辑生日显示状态
-      isEditPhotoShow: false // 编辑头像显示状态
+      isEditPhotoShow: false, // 编辑头像显示状态
+      previewImage: null // 上传预览图片
     }
   },
   created () {
@@ -123,7 +133,11 @@ export default {
       this.user = data.data
     },
     onFileChange () {
+      // 弹出展示
       this.isEditPhotoShow = true
+      const file = this.$refs.file.files[0]
+      // console.log(blob)
+      this.previewImage = file
       // 情况file的value
       this.$refs.file.value = ''
     }
@@ -133,5 +147,8 @@ export default {
 <style lang="less">
 .van-popup{
   background-color: #f5f7f9;
+}
+.update-photo-poup{
+  background-color: black;
 }
 </style>

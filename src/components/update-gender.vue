@@ -35,7 +35,8 @@ export default {
       // console.log('hello')
       this.$toast.loading({
         message: '保存中',
-        forbidclick: true // 禁止背景点击
+        forbidclick: true, // 禁止背景点击
+        duration: 0
       })
       // 请求修改名称
       await updateUserProfile({

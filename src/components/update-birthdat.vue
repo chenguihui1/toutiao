@@ -33,7 +33,8 @@ export default {
     async onConfirm () {
       this.$toast.loading({
         message: '保存中',
-        forbidclick: true // 禁止背景点击
+        forbidclick: true, // 禁止背景点击
+        duration: 0
       })
       // const data = `
       //   ${this.currentDate.getFullYear()}-
