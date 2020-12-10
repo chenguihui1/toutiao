@@ -12,11 +12,14 @@
       class="message-list"
       ref="message-list"
     >
-      <van-cell
-        :title="item.msg"
-        v-for="(item, index) in messages"
-        :key="index"
-      />
+      <div>
+        <van-cell
+          class="message-left"
+          :value="item.msg"
+          v-for="(item, index) in messages"
+          :key="index"
+        />
+      </div>
     </van-cell-group>
     <!-- 消息通知 -->
     <!-- 发送消息 -->
@@ -74,14 +77,39 @@ export default {
             // next(false)
           })
       } else {
-        console.log(information())
         const data = {
           msg: this.message,
           timestamp: Date.now()
         }
         this.messages.push(data)
+        // console.log(information())
+        for (let i = 0; i < information().length; i++) {
+          if (this.message === information()[i].id) {
+            const arr = {
+              msg: information()[i].msg,
+              timestamp: Date.now(),
+              id: true
+            }
+            this.messages.push(arr)
+            // 清除输入框内容
+            this.message = ''
+            return
+          }
+        }
         // 清除输入框内容
         this.message = ''
+        for (let j = 0; j < information().length; j++) {
+          if (this.message !== information()[j].id) {
+            const arr = {
+              msg: '我不知道你在说什么',
+              timestamp: Date.now()
+            }
+            this.messages.push(arr)
+          }
+          // 清除输入框内容
+          this.message = ''
+          return
+        }
       }
     },
     scrollToBottom () {
@@ -99,6 +127,7 @@ export default {
   top: 46px;
   bottom: 44px;
   overflow-y: auto;
+
 }
 .send-message-wrap{
   position: fixed;
