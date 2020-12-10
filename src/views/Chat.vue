@@ -2,6 +2,7 @@
   <div class="user-chat">
     <!-- 导航栏 -->
     <van-nav-bar
+      class="app-nav-bar"
       title="小智同学"
       left-arrow
       @click-left="$router.back()"
@@ -15,7 +16,7 @@
       <div>
         <van-cell
           class="message-left"
-          :value="item.msg"
+          :title="item.msg"
           v-for="(item, index) in messages"
           :key="index"
         />
@@ -44,6 +45,7 @@
 import { getItem, setItem } from '@/assets/utils/session'
 import { Dialog } from 'vant'
 import { information } from '@/assets/JavaScript/robot-data'
+import '@/assets/style/chat.less'
 export default {
   name: 'UserChat',
   data () {
@@ -120,25 +122,4 @@ export default {
 }
 </script>
 <style lang="less">
-.message-list{
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 46px;
-  bottom: 44px;
-  overflow-y: auto;
-
-}
-.send-message-wrap{
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  padding: 0 14px;
-  align-items: center;
-  /deep/ .van-button--small{
-  width: 60px;
-  }
-}
 </style>

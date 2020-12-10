@@ -1,0 +1,30 @@
+.message-list{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 46px;
+    bottom: 44px;
+    overflow-y: auto;
+    border: none;
+    padding-top: 10px;
+}
+.message-left:nth-of-type(odd){
+    .van-cell__title{
+      span{
+        float: right;
+      }
+    }
+}
+.send-message-wrap{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    padding: 0 14px;
+    border-top: 1px solid rgb(233, 233, 233);
+    align-items: center;
+    /deep/ .van-button--small{
+        width: 60px;
+    }
+}
