@@ -48,19 +48,26 @@
         v-model="isChannelEditShow"
         get-container="body"
       >
-        123
+        <channel-edit
+          :user-channels="channels"
+          :active="active"
+          @close="isChannelEditShow = false"
+          @update-active="onUpdateActive"
+        />
       </van-popup>
     </div>
 </template>
 <script>
 import { getUserChannels } from '@/assets/api/user'
 import ArtcleList from '@/components/artcle-list'
+import ChannelEdit from '@/components/channel-edit'
 import '@/assets/style/home.less'
 // import '@/assets/JavaScript/'
 export default {
   name: 'home',
   components: {
-    ArtcleList
+    ArtcleList,
+    ChannelEdit
   },
   data () {
     return {
@@ -78,6 +85,10 @@ export default {
       const { data } = await getUserChannels()
       // console.log(data)
       this.channels = data.data.channels
+    },
+    onUpdateActive (index) {
+      // d
+      this.active = index
     }
   }
 }
