@@ -1,34 +1,66 @@
 .home-container{
-    /deep/ .van-nav-bar__title{
-      max-width: none;
+  /deep/ .van-nav-bar__title{
+    max-width: none;
+  }
+  .search-btn{
+    width: 277px;
+    height: 32px;
+    background: #5babfb;
+    border: none;
+    .van-icon{
+      font-size: 16px;
     }
-    .search-btn{
-      width: 277px;
-      height: 32px;
-      background: #5babfb;
-      border: none;
-      .van-icon{
-        font-size: 16px;
-      }
-      .van-button__text{
-        font-size: 14px;
-      }
+    .van-button__text{
+      font-size: 14px;
     }
-    /deep/.van-tabs__wrap--scrollable{
-      .van-tab{
-        border-right: 1px solid #edeff3;
-        border-bottom: 1px solid #edeff3;
-        padding-left: 21px;
-        padding-right: 20px;
-      }
-      .van-tabs__line{
-        bottom: 4px;
-        width: 25px !important;
-        height: 3px;
-        background: #3296fa;
-      }
+  }
+  /deep/.van-tabs__wrap--scrollable{
+    .van-tab{
+      border-right: 1px solid #edeff3;
+      border-bottom: 1px solid #edeff3;
+      padding-left: 21px;
+      padding-right: 20px;
     }
-    /deep/ .van-tabs__nav--complete{
-      padding: unset;
+    .van-tabs__line{
+      bottom: 4px;
+      width: 25px !important;
+      height: 3px;
+      background: #3296fa;
     }
+  }
+  /deep/ .van-tabs__nav--complete{
+    padding: unset;
+  }
+  .wap-nav-placehoder {
+    width: 33px;
+    flex-shrink: 0;
+  }
+  .wap-nav-warp{
+    position: fixed;
+    right: 0;
+    width: 33px;
+    height: 43px;
+    background-color: white;
+    opacity: .9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #edeff3;
+    .van-icon{
+      font-size: 26px;
+    }
+    &::before {
+      content: "";
+      width: 1px;
+      height: 43px;
+      background: url("../images/line.png") no-repeat;
+      background-size: cover;
+      position: absolute;
+      left: -1px;
+      top: 0px;
+    }
+  }
+}
+.channel-edit-popup{
+  height: 100%;
 }

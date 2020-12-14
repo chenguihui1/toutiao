@@ -26,7 +26,30 @@
           <artcle-list :channel="channel"  />
           <!-- 文章列表 -->
         </van-tab>
+        <div
+          slot="nav-right"
+          class="wap-nav-placehoder"
+        ></div>
+        <div
+          slot="nav-right"
+          class="wap-nav-warp"
+          @click="isChannelEditShow=true"
+        >
+          <van-icon name="wap-nav" />
+        </div>
       </van-tabs>
+      <!-- 判断编辑
+       -->
+      <van-popup
+        class="channel-edit-popup"
+        position="bottom"
+        closeable
+        close-icon-position="top-left"
+        v-model="isChannelEditShow"
+        get-container="body"
+      >
+        123
+      </van-popup>
     </div>
 </template>
 <script>
@@ -42,7 +65,8 @@ export default {
   data () {
     return {
       active: 0, // 控制被激活的标签
-      channels: [] // 频道列表
+      channels: [], // 频道列表
+      isChannelEditShow: false
     }
   },
   created () {
