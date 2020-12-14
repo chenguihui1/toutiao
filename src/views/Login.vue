@@ -8,7 +8,7 @@
     >
       <template #left>
         <div class="nav-left">
-          <div class="logo"></div>
+          <div class="logo"><img src="../assets/images/home.png" alt=""></div>
           <div class="logo-text">Luckin toutiao</div>
         </div>
       </template>
