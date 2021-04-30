@@ -1,4 +1,7 @@
 # toutiao-m
+# 通过npm安装相关依赖可以启动项目
+输入 npm i
+
 # VueCLi 组件
 npm install --global @vue/cli
 # 安装 Vant
